@@ -1,4 +1,2 @@
 *.py linguist-detectable=true
 *.py linguist-language=Python
-*.ipynb linguist-detectable=true
-*.ipynb linguist-language=Jupyter Notebook
