@@ -1,0 +1,63 @@
+================================================================================
+  NOTES ORAL – HUGO – Diapos 9 à 12
+================================================================================
+
+
+--- DIAPO 9 : « Un code vérifié à chaque étape » ---
+
+- Expliquer le pipeline : on charge un problème, on lance l'ALNS, on vérifie
+  la solution avec un vérificateur indépendant, on enregistre les résultats.
+
+- Parler du test unitaire des 4 clients :
+  • Instance fabriquée à la main : dépôt en (0,0), 4 clients aux coins d'un
+    carré (10,10), (-10,10), (-10,-10), (10,-10). Demande = 10 chacun,
+    capacité camion = 20, donc max 2 clients par camion, donc 2 tournées min.
+  • Fenêtres de temps : client 1 doit être livré tôt (avant t=20), client 3
+    tard (entre t=200 et 300). Ça force un certain agencement des tournées.
+  • L'ALNS retrouve l'optimum : tournées [[1,2],[4,3]], coût = 96,4. OK.
+  • On teste aussi 2 mauvaises solutions que le vérificateur doit rejeter :
+    [[3,1],[2,4]] → fenêtre violée (client 1 livré trop tard après l'attente
+    chez client 3) ; [[1,2,3],[4]] → capacité dépassée (30 > 20).
+  • But : valider que le code fonctionne avant de passer aux vrais problèmes.
+
+
+--- DIAPO 10 : « Exemple : 100 clients, 20 camions » ---
+
+- Montrer le résultat sur R101 : 100 clients dispersés, fenêtres serrées.
+  Notre solution est à 1,17 % du record mondial, obtenue en 30 secondes.
+
+- Lire le graphique : chaque couleur = un camion, carré rouge = dépôt,
+  points noirs = clients.
+
+- Lancer la démo en direct (notebook Demo_soutenance.ipynb) : le test des
+  4 clients passe, puis résolution d'une instance avec graphique et courbe
+  de convergence.
+
+
+--- DIAPO 11 : « Plan d'expérience : 6 questions » ---
+
+Présenter rapidement les 6 questions :
+  1. L'ALNS trouve-t-elle l'optimum ? → 18 petits cas comparés au PLNE.
+  2. Quelle qualité sur les références ? → 56 instances de Solomon, gap vs BKS.
+  3. Combien d'itérations faut-il ? → Convergence sur R101 et RC201.
+  4. Le temps explose-t-il ? → Instances de 25 à 400 clients.
+  5. Quels réglages comptent ? → Un paramètre à la fois, test de Wilcoxon.
+  6. Que coûtent les créneaux ? → Avec vs sans fenêtres de temps.
+
+Rappeler les familles Solomon : C = groupés, R = dispersés, RC = mixte ;
+série 1 = créneaux serrés, série 2 = larges.
+
+
+--- DIAPO 12 : « Vérification : l'ALNS trouve la meilleure solution » ---
+
+- Résultat de la question 1 : 16/18 optimums retrouvés, 0,40 % d'écart
+  au pire pour les 2 restants.
+
+- Le temps du PLNE explose (×35 entre 25 et 50 clients) → ça illustre la
+  NP-difficulté et justifie l'utilisation de la métaheuristique.
+
+- Transition vers Saad qui présente les résultats détaillés.
+
+
+================================================================================
+
